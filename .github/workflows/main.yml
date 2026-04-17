@@ -1,19 +1,19 @@
 name: Build EXE
 
 on:
-  workflow_dispatch: # Позволяет запускать сборку вручную
+  workflow_dispatch: 
 
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Setup .NET
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 6.0.x # или 7.0.x, зависит от проекта
+        dotnet-version: 6.0.x 
 
     - name: Restore dependencies
       run: dotnet restore
@@ -22,7 +22,7 @@ jobs:
       run: dotnet build --configuration Release
 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: MortarKiller-Build
         path: "**/bin/Release/**"
